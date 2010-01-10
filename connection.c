@@ -5,7 +5,8 @@
 
 int tcp_connect(char *host_name, int port)
 {
-	struct addrinfo host, *local;
+	struct addrinfo *local;
+	struct sockaddr_in host;
 	struct hostent *host_det;
 	int fd;
 	
@@ -41,12 +42,19 @@ printf("%s\n",st);
 }
 //-----------------------debugging part ends		*/
 	
-	if(bind(fd, local->ai_addr, sizeof(struct sockaddr_in)))
+	if(bind(fd, local->ai_addr, sizeof(struct sockaddr_in)) == -1)
 		printf("Error in binding\n");
 	else
 		printf("Done binding..!\n");
 
+	host.sin_family = AF_INET;
+	host.sin_port = htons( port );
+	host.sin_addr = *( ( struct in_addr *)host_det->h_addr);
 
+	if(connect(fd, (struct sockaddr *)&host, sizeof(struct sockaddr_in)) == -1)
+		printf("Error in connecting..!!\n");
+	else
+		printf("Connected..\n");
 
 	return fd;
 }
