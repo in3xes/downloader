@@ -1,7 +1,7 @@
 /*									
 (c) Pradeepkumar Gayam<deepu.aprjc@gmail.com>		*/
 
-#include "main.h"
+#include "download.h"
 
 int tcp_connect(char *host_name, int port)
 {
@@ -16,7 +16,11 @@ int tcp_connect(char *host_name, int port)
 //	printf("Info: %i\n",*host_det->h_name);	
 	
 	if(fd = socket(AF_INET, SOCK_STREAM, 0))
+	{
+#ifdef DEBUG
 		printf("Socket created..!\n");
+#endif
+	}
 	else
 		printf("Error in creating socket..!\n");
 	
@@ -28,6 +32,8 @@ int tcp_connect(char *host_name, int port)
 	int tmp_status ;
 	if((tmp_status = getaddrinfo(NULL, "0", &tmp, &local)) !=0 )
 		fprintf(stderr,"Error in finding local address..!! %s\n",gai_strerror(tmp_status));
+
+#ifdef DEBUG
 //------------------------debuggin part			*/
 struct addrinfo *tmp1;
 char st[20];
@@ -41,11 +47,15 @@ inet_ntop(AF_INET, addr, st,sizeof st);
 printf("%s\n",st);
 }
 //-----------------------debugging part ends		*/
+#endif
+
 	
 	if(bind(fd, local->ai_addr, sizeof(struct sockaddr_in)) == -1)
 		printf("Error in binding\n");
 	else
+#ifdef DEBUG
 		printf("Done binding..!\n");
+#endif
 
 	host.sin_family = AF_INET;
 	host.sin_port = htons( port );
@@ -54,7 +64,9 @@ printf("%s\n",st);
 	if(connect(fd, (struct sockaddr *)&host, sizeof(struct sockaddr_in)) == -1)
 		printf("Error in connecting..!!\n");
 	else
+#ifdef DEBUG
 		printf("Connected..\n");
+#endif
 
 	return fd;
 }

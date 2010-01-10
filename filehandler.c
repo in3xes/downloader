@@ -1,7 +1,7 @@
 /*								*
 *(C)Pradeepkumar Gayam<deepu.aprjc@gmail.com>			*/
 
-#include "main.h"
+#include "download.h"
 
 void download(int fd, char *path, char *filename)
 {
@@ -19,8 +19,8 @@ void download(int fd, char *path, char *filename)
 	char data[MAXBUFFER];
 	while(bites_read = read(fd, data, size))
 	{
-			printf("%s\n",data);
-//			printf("%i\n",bites_read);
+//			printf("%s\n",data);
+			printf("%i\n",bites_read);
 			memset(data,'\0',MAXBUFFER);
 	}
 }

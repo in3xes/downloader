@@ -12,6 +12,7 @@
 
 #define MAXSTRING	255
 #define MAXBUFFER	5047
+#define DEBUG
 
 int tcp_connect(char *host, int port);
 void download(int fd, char *path, char *filename);
