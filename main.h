@@ -7,5 +7,9 @@
 #include <netdb.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <errno.h>
+
+
+int tcp_connect(char *host, int port);
 
 

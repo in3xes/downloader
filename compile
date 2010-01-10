@@ -1,0 +1,3 @@
+gcc -c connection.c -o conn
+gcc -c main.c -o main
+gcc conn main -o download
