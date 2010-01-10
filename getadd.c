@@ -3,8 +3,8 @@
 
 #include "main.h"
 
-//int main(int argc, char *argv[])
-int main()
+int main(int argc, char *argv[])
+//int main()
 {
 	int status;
 	struct addrinfo hints;
@@ -16,8 +16,8 @@ int main()
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags =  AI_PASSIVE;
 	
-//	if((status = getaddrinfo(argv[1], NULL, &hints, &info)) != 0)
-	if((status = getaddrinfo(NULL, "0", &hints, &info)) != 0)
+	if((status = getaddrinfo(argv[1], NULL, &hints, &info)) != 0)
+//	if((status = getaddrinfo(NULL, "0", &hints, &info)) != 0)
 	{
 		fprintf(stderr,"Error%s",gai_strerror(status));
 	}

@@ -14,4 +14,4 @@
 #define MAXBUFFER	2047
 
 int tcp_connect(char *host, int port);
-void download(int fd, char filename);
+void download(int fd, char path, char filename);

@@ -3,9 +3,9 @@
 
 #include "main.h"
 
-void(int fd, char path, char filename)
+void download(int fd, char path, char filename)
 {
-	char command[MAXSTRING]='\0';
-	
-	write(fd,
-}	
+	char *command = "GET /";
+	strcat(command, &path);
+	write(fd, command, MAXSTRING);
+}
