@@ -11,7 +11,7 @@
 #include <unistd.h>
 
 #define MAXSTRING	255
-#define MAXBUFFER	2047
+#define MAXBUFFER	5047
 
 int tcp_connect(char *host, int port);
-void download(int fd, char path, char filename);
+void download(int fd, char *path, char *filename);

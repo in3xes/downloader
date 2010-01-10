@@ -1,4 +1,5 @@
 #!/bin/bash
-gcc -c connection.c -o conn
-gcc -c main.c -o main
-gcc conn main -o download
+gcc -c connection.c -o o_conn
+gcc -c filehandler.c -o o_file
+gcc -c main.c -o o_main
+gcc o_conn o_main o_file -o download
