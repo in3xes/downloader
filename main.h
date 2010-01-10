@@ -8,8 +8,10 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include <errno.h>
+#include <unistd.h>
 
+#define MAXSTRING	255
+#define MAXBUFFER	2047
 
 int tcp_connect(char *host, int port);
-
-
+void download(int fd, char filename);
