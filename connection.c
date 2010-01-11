@@ -33,6 +33,7 @@ int tcp_connect(char *host_name, int port)
 	if((tmp_status = getaddrinfo(NULL, "0", &tmp, &local)) !=0 )
 		fprintf(stderr,"Error in finding local address..!! %s\n",gai_strerror(tmp_status));
 
+
 #ifdef DEBUG
 //------------------------debuggin part			*/
 struct addrinfo *tmp1;

@@ -17,3 +17,14 @@
 
 int tcp_connect(char *host, int port);
 void download(int fd, char *path, char *filename);
+void parse(char *url);
+void host(char *url);
+
+typedef struct 
+{
+	char url;
+	char host;
+	char path;
+	char filename;
+} downloader;
+

@@ -2,5 +2,8 @@
 gcc -c connection.c -o o_conn
 gcc -c filehandler.c -o o_file
 gcc -c main.c -o o_main
-gcc o_conn o_main o_file -o download
+gcc -c string.c -o o_parse
+#gcc o_conn o_main o_file o_parse -o download
+gcc o_conn o_main o_file o_parse -o download
+
 strip download
