@@ -24,12 +24,8 @@ typedef struct
 	char filename[MAXSTRING];
 } downloader;
 
-int tcp_connect(char *host, int port);
-void download(int fd, char *path, char *filename);
+int tcp_connect(downloader *object, int port);
+void download(int fd, downloader *object);
 void parse(char *url, downloader *object);
 void host(char *url, downloader *object);
-
-//void parse(char *url);
-//void host(char *url);
-
 

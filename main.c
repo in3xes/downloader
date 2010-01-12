@@ -3,9 +3,15 @@
 
 #include "download.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-	char *url = "www.iitr.ac.in/path/to/folder/index.html";
+	if(argc < 2)
+	{
+		printf("Usage: \"download url\"\n");
+		exit(-1);
+	}
+	
+	char *url = argv[1];
 	downloader *obj ;
 	obj = malloc( sizeof( downloader ) );
 	memset(obj,0,sizeof(downloader));
@@ -14,25 +20,25 @@ int main()
 	int fd;
 
 
-//---------------------------------------------------
-/*	char path[MAXSTRING], filename[MAXSTRING];
+/*---------------------------------------------------*\
+	char path[MAXSTRING], filename[MAXSTRING];
 	strcpy(path,"/index.html");
-//	printf("%s\n",path);
-	strcpy(filename,"index.html"); */
-//---------------------------------------------------
+	printf("%s\n",path);
+	strcpy(filename,"index.html"); 
+\*---------------------------------------------------*/
 
 	parse(url, obj);
 	host(url,obj);
-//	printf("%s\t%s\t%s\n",obj->filename,obj->path,obj->host);
+	printf("%i\t%s\t%s\t%s\n",strlen(obj->filename),obj->filename,obj->path,obj->host);
 
-	if(fd = tcp_connect(obj->host, port))
+	if(fd = tcp_connect(obj , port))
 	{
 #ifdef DEBUG
 		printf("it's working..!!\n");
 #endif
 	}
 
-//	download(fd, path, filename);
+	download(fd, obj);
 	
 #ifdef DEBUG
 	printf("Debug enabled\n");

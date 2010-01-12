@@ -3,14 +3,14 @@
 
 #include "download.h"
 
-int tcp_connect(char *host_name, int port)
+int tcp_connect(downloader *object, int port)
 {
 	struct addrinfo *local;
 	struct sockaddr_in host;
 	struct hostent *host_det;
 	int fd;
 	
-	if(!(host_det = gethostbyname(host_name)))
+	if(!(host_det = gethostbyname(object->host)))
 		printf("Error in finding hostname..!!\n");
 	
 //	printf("Info: %i\n",*host_det->h_name);	

@@ -6,21 +6,48 @@
 void parse(char *url, downloader *object)
 {
 	char *a,*path,filename[MAXSTRING];
-	a = strrchr(url, '/');
-//	strcpy(filename,&a[1]);
-	int index;
-	int len = strlen(a);
-	for(index = 0; index < len; index++)
+	if(a = strrchr(url, '/'))
 	{
-		filename[index] = (char )a[index+1];
+		int len = strlen(a);
+		if(len > 1)
+		{
+			int index;
+			for(index = 0; index < len; index++)
+			{
+				filename[index] = (char )a[index+1];
+			}
+			filename[len] ='\0';
+			strcpy(object->filename, filename);
+
+		}
+		else
+			strcpy(object->filename,"index.html");
 	}
-	filename[len] ='\0';
-	object->path = strchr(url, '/');
-	path = strchr(url,'/');
-	strcpy(object->filename, filename);
+	else
+		strcpy(object->filename,"index.html");
+
+	
+	if(!(object->path = strchr(url, '/')))
+	{
+		char buff[MAXSTRING];
+		strcpy(buff,url);
+		strcat(buff,"/index.html");
+		object->path = strchr(buff, '/');
+	}
+	else if(!(strlen(object->path) > 1))
+	{
+		char buff[MAXSTRING];
+		strcpy(buff,url);
+		strcat(buff,"index.html");
+		object->path = strchr(buff, '/');
+	}
+	else
+	{	}
+//	path = strchr(url,'/');
+
 
 #ifdef DEBUG
-	printf("%s\t%s\t", path,(char *)filename);
+	printf("%s\t%s\t", object->path,object->filename);
 #endif	
 }
 
@@ -29,20 +56,22 @@ void host(char *url,downloader *object)
 
 	char *path;
 	char *faltu;
-	path = strchr(url, '/');
+	if(path = strchr(url, '/'))
+	{
+		size_t len_path = strlen(path);
+		size_t len_url = strlen(url);
+		size_t len = len_url - len_path;
 
-	size_t len_path = strlen(path);
-	size_t len_url = strlen(url);
-	size_t len = len_url - len_path;
-
-	char name[MAXSTRING];
-	strncpy(name, url, len);
-	name[len]='\0';
-	
-	strcpy(object->host, name);
+		char name[MAXSTRING];
+		strncpy(name, url, len);
+		name[len]='\0';
+		strcpy(object->host, name);
+	}
+	else
+		strcpy(object->host,url);
 
 #ifdef DEBUG
-	printf("%s\n",name);
+	printf("%s\n",object->host);
 #endif
 
 /*Debug								*/
