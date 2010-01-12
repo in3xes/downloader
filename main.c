@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 	parse(url, obj);
 	host(url,obj);
-	printf("%i\t%s\t%s\t%s\n",strlen(obj->filename),obj->filename,obj->path,obj->host);
+	printf("%i\t%s\t%s\t%s\n",strlen(obj->path),obj->filename,obj->path,obj->host);
 
 	if(fd = tcp_connect(obj , port))
 	{

@@ -33,6 +33,8 @@ void parse(char *url, downloader *object)
 		strcpy(buff,url);
 		strcat(buff,"/index.html");
 		object->path = strchr(buff, '/');
+
+//		strcpy(object->path,"/index.html");
 	}
 	else if(!(strlen(object->path) > 1))
 	{
@@ -42,7 +44,9 @@ void parse(char *url, downloader *object)
 		object->path = strchr(buff, '/');
 	}
 	else
-	{	}
+	{
+		object->path = strchr(url, '/');
+	}
 //	path = strchr(url,'/');
 
 
@@ -55,7 +59,6 @@ void host(char *url,downloader *object)
 {
 
 	char *path;
-	char *faltu;
 	if(path = strchr(url, '/'))
 	{
 		size_t len_path = strlen(path);
