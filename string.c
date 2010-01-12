@@ -21,12 +21,21 @@ void parse(char *url, downloader *object)
 
 		}
 		else
+		{
 			strcpy(object->filename,"index.html");
+			strcpy(object->path,"index.html");
+		}
+
 	}
 	else
+	{
 		strcpy(object->filename,"index.html");
+		strcpy(object->path,"/index.html");
 
-	
+	}
+		
+
+/*	
 	if(!(object->path = strchr(url, '/')))
 	{
 		char buff[MAXSTRING];
@@ -48,7 +57,9 @@ void parse(char *url, downloader *object)
 		object->path = strchr(url, '/');
 	}
 //	path = strchr(url,'/');
+*/
 
+//	object->path = strchr(buff, '/');
 
 #ifdef DEBUG
 	printf("%s\t%s\t", object->path,object->filename);

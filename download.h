@@ -20,7 +20,7 @@ typedef struct
 {
 	char *url;
 	char host[MAXSTRING];
-	char *path;
+	char path[MAXSTRING];
 	char filename[MAXSTRING];
 } downloader;
 
