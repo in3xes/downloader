@@ -3,21 +3,28 @@
 
 #include "download.h"
 
-void parse(char *url)
+void parse(char *url, downloader *object)
 {
-	char *a,*path,*filename;
+	char *a,*path,filename[MAXSTRING];
 	a = strrchr(url, '/');
-	strcpy(filename,&a[1]);
-	path = strchr(url, '/');
+//	strcpy(filename,&a[1]);
+	int index;
+	int len = strlen(a);
+	for(index = 0; index < len; index++)
+	{
+		filename[index] = (char )a[index+1];
+	}
+	filename[len] ='\0';
+	object->path = strchr(url, '/');
+	path = strchr(url,'/');
+	strcpy(object->filename, filename);
 
 #ifdef DEBUG
-	printf("%s\t%s\n", url,filename);
-	printf("%s\t%s\n", url,path);
-#endif
-	
+	printf("%s\t%s\t", path,(char *)filename);
+#endif	
 }
 
-void host(char *url)
+void host(char *url,downloader *object)
 {
 
 	char *path;
@@ -31,10 +38,13 @@ void host(char *url)
 	char name[MAXSTRING];
 	strncpy(name, url, len);
 	name[len]='\0';
+	
+	strcpy(object->host, name);
 
 #ifdef DEBUG
-	printf("%s\t%s\n",url,name);
+	printf("%s\n",name);
 #endif
+
 /*Debug								*/
 /*
 	char af[] = "asdf1234";
