@@ -11,10 +11,11 @@
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <time.h>
 
 #define MAXSTRING	255
-#define MAXBUFFER	5047
-#define DEBUG
+#define MAXBUFFER	1023
+//#define DEBUG
 
 typedef struct 
 {
@@ -22,10 +23,11 @@ typedef struct
 	char host[MAXSTRING];
 	char path[MAXSTRING];
 	char filename[MAXSTRING];
+	char header[MAXSTRING];
 } downloader;
 
 int tcp_connect(downloader *object, int port);
 void download(int fd, downloader *object);
 void parse(char *url, downloader *object);
 void host(char *url, downloader *object);
-
+double gettime();

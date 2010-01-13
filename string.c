@@ -18,6 +18,8 @@ void parse(char *url, downloader *object)
 			}
 			filename[len] ='\0';
 			strcpy(object->filename, filename);
+			path = strchr(url,'/');
+			strcpy(object->path, path);
 
 		}
 		else
