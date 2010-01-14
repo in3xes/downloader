@@ -105,15 +105,15 @@ void host(char *url,downloader *object)
 
 void remove_proto(char *url,char *final_url)
 {
+//	char tmp[MAXSTRING];
 	char *tmp;
+	tmp = malloc(sizeof(char));
+	memset(tmp,0,sizeof(char));
 	if(!(strstr(url,"://")))
-	{
-		printf("Debug");
 		strcpy(final_url, url);
-	}
 	else if(url[0] == 'f')
 	{
-		printf("Protocal not supported!");
+		printf("FTP Protocal not supported!\n");
 		exit(0);
 	}
 	else
@@ -122,8 +122,9 @@ void remove_proto(char *url,char *final_url)
 		int dx;
 		for( dx = 0; dx < ln-6; dx++)
 		{
-			final_url[dx] = url[dx+7];
+			tmp[dx] = url[dx+7];
 		}
+		strcpy(final_url,tmp);
 	}
 
 /*	else
@@ -132,6 +133,42 @@ void remove_proto(char *url,char *final_url)
 		tmp = strstr(url,"//");
 		strcpy(final_url, tmp);
 	}
+*/	
+}
+
+void http_status(downloader *object)
+{
+	char *status;
+	status = malloc(sizeof(char));
+	memset(status,0,sizeof(char));
+	int a;
+	for(a=0; a<3; a++)
+	{
+		status[a] = object->header[a+9];
+	}
+	object->status = atoi(status);
+	printf("HTTP Status is %i\n", object->status);
+}
+
+void redirect(downloader *object)
+{
+	if(object->status >= 200 && object->status < 300)
+		printf("O.K\n");
+	else if(object->status >= 300 && object->status < 400)
+	{
+		printf("Page has been moved\n");
+		char *next_url;
+		next_url = strstr(object->header,"http://");
+		char *garbage;
+		garbage = strchr(next_url,'\n');
+		int gar_len = strlen(garbage);
+		char *asali;
+		strncpy(asali, next_url, strlen(next_url)-strlen(garbage)-1);
+		printf("New url is %s\n", asali);
 	
-*/
+	}
+	else if(object->status >=400 && object->status <500)
+		printf("Bad Request\n");
+	else 
+		printf("Server Error\n");
 }

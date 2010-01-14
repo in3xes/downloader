@@ -53,7 +53,11 @@ void download(int fd, downloader *object)
 			strcat(object->header,data);
 		}
 	}
-	
+
+	http_status(object);
+	redirect(object);
+
+
 	int bites = 0, total_bites=0;
 	double start, end,rem;
 	start = gettime();
@@ -62,7 +66,7 @@ void download(int fd, downloader *object)
 	while(bites_read = read(fd,data,1))
 	{
 		write(file_fd,data,bites_read);
-		if(bites > 10000)
+		if(bites > 1000)
 		{
 			end = gettime();
 			double speed = (end - start); //CLOCKS_PER_SEC;
@@ -73,7 +77,7 @@ void download(int fd, downloader *object)
 		}
 		bites = bites + bites_read;
 		total_bites = total_bites + bites_read;
-		if((bites%200)== 0)
+		if((bites%20)== 0)
 			printf(".");
 	}
 	printf("\nAverage speed : %iK/s, Size of file is %i, (%iK), %i Sce\n\n",(int)(total_bites/((end-rem)*1000)),total_bites,total_bites/1000,(int)(end-rem));

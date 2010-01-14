@@ -63,7 +63,7 @@ printf("%s\n",st);
 	host.sin_addr = *( ( struct in_addr *)host_det->h_addr);
 
 	if(connect(fd, (struct sockaddr *)&host, sizeof(struct sockaddr_in)) == -1)
-		printf("Error in connecting..!!\n");
+		printf("Server is taking too long to respond..\n");
 	else
 #ifdef DEBUG
 		printf("Connected..\n");

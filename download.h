@@ -24,6 +24,7 @@ typedef struct
 	char path[MAXSTRING];
 	char filename[MAXSTRING];
 	char header[MAXSTRING];
+	int status;
 } downloader;
 
 int tcp_connect(downloader *object, int port);
@@ -32,3 +33,5 @@ void parse(char *url, downloader *object);
 void host(char *url, downloader *object);
 double gettime();
 void remove_proto(char *url,char *url_final);
+void http_status(downloader *object);
+void redirect(downloader *object);
