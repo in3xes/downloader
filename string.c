@@ -101,3 +101,37 @@ void host(char *url,downloader *object)
 */
 /*Debug ends							*/
 }
+
+
+void remove_proto(char *url,char *final_url)
+{
+	char *tmp;
+	if(!(strstr(url,"://")))
+	{
+		printf("Debug");
+		strcpy(final_url, url);
+	}
+	else if(url[0] == 'f')
+	{
+		printf("Protocal not supported!");
+		exit(0);
+	}
+	else
+	{
+		int ln = strlen(url);
+		int dx;
+		for( dx = 0; dx < ln-6; dx++)
+		{
+			final_url[dx] = url[dx+7];
+		}
+	}
+
+/*	else
+	{
+		printf("else");
+		tmp = strstr(url,"//");
+		strcpy(final_url, tmp);
+	}
+	
+*/
+}

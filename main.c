@@ -12,8 +12,12 @@ int main(int argc, char *argv[])
 		exit(-1);
 	}
 
-	
-	char *url = argv[1];
+	char *url;
+//	url = malloc(sizeof(char));
+//	memset(url,'\0',sizeof(char));
+
+	remove_proto(argv[1],url);
+
 //	char *url = "www.google.com/";
 	downloader *obj ;
 	obj = malloc( sizeof( downloader ) );

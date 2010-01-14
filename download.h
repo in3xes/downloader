@@ -31,3 +31,4 @@ void download(int fd, downloader *object);
 void parse(char *url, downloader *object);
 void host(char *url, downloader *object);
 double gettime();
+void remove_proto(char *url,char *url_final);

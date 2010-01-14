@@ -62,7 +62,7 @@ void download(int fd, downloader *object)
 	while(bites_read = read(fd,data,1))
 	{
 		write(file_fd,data,bites_read);
-		if(bites > 100000)
+		if(bites > 10000)
 		{
 			end = gettime();
 			double speed = (end - start); //CLOCKS_PER_SEC;
@@ -73,6 +73,8 @@ void download(int fd, downloader *object)
 		}
 		bites = bites + bites_read;
 		total_bites = total_bites + bites_read;
+		if((bites%200)== 0)
+			printf(".");
 	}
 	printf("\nAverage speed : %iK/s, Size of file is %i, (%iK), %i Sce\n\n",(int)(total_bites/((end-rem)*1000)),total_bites,total_bites/1000,(int)(end-rem));
 
