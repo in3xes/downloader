@@ -179,7 +179,7 @@ void redirect(downloader *object)
 	{
 		printf("Page has been moved\n");
 		char *next_url;
-		next_url = strstr(object->header,"http://");
+		next_url = strstr(object->header,"http");
 		char *garbage;
 		garbage = strchr(next_url,'\n');
 		int gar_len = strlen(garbage);

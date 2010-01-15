@@ -73,6 +73,10 @@ void download(int fd, downloader *object)
 		}
 	}
 
+#ifdef DEBUG
+	printf("Header:\n%s\n",object->header);
+#endif
+
 	http_status(object);
 	redirect(object);
 
@@ -101,9 +105,6 @@ void download(int fd, downloader *object)
 	}
 	printf("\nAverage speed : %iK/s, Size of file is %i, (%iK), %i Sce\n\n",(int)(total_bites/((end-rem)*1000)),total_bites,total_bites/1000,(int)(end-rem));
 
-#ifdef DEBUG
-	printf("Header:\n%s\n",object->header);
-#endif
 
 //	printf("Time elapsed is %lf\n",end-rem);
 
