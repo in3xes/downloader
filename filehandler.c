@@ -1,5 +1,24 @@
-/*								*
-*(C)Pradeepkumar Gayam<deepu.aprjc@gmail.com>			*/
+/*a simple downloader						*\
+*								*
+\*(c) 2010 pradeepkumar gayam<deepu.aprjc@gmail.com>		*/
+
+//downloading occurs here
+/*
+  this program is free software; you can redistribute it and/or modify
+  it under the terms of the gnu general public license as published by
+  the free software foundation; either version 2 of the license, or
+  (at your option) any later version.
+
+  this program is distributed in the hope that it will be useful,
+  but without any warranty; without even the implied warranty of
+  merchantability or fitness for a particular purpose.  see the
+  gnu general public license for more details.
+
+  you should have received a copy of the gnu general public license with
+  the debian gnu/linux distribution in file /usr/doc/copyright/gpl;
+  if not, write to the free software foundation, inc., 59 temple place,
+  suite 330, boston, ma  02111-1307  usa
+*/
 
 #include "download.h"
 
