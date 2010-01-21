@@ -1,0 +1,20 @@
+(C)Pradeepkumar Gayam<deepu.aprjc@gmail.com>
+
+This is a simple file downloader. It's made to simply to test.
+Lot of improvements to be done.It's implimented only for http 
+protocol. ftp is yet to  be implimented. 
+
+Fecilities:
+1)Pass the url of file.(Redirection not implimented)
+2)Download speed with every 1KB.
+3)Total sizeof file.
+4)Awesome debugging messages.
+
+TO-DO:
+1)Redirection implimentation.
+2)Enabling ftp
+3)Multimple connection.
+4)Improvements to be done in network connection, IP details.(Yet to read alot).
+
+Usage:
+
