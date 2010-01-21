@@ -32,24 +32,23 @@ double gettime()
 
 void download(int fd, downloader *object)
 {
-	char command[MAXSTRING];
-	strcpy(command ,"GET ");
-	strcat(command, object->path);
-	strcat(command, " HTTP/1.0\nHost: ");
-	strcat(command, object->host);
-	strcat(command, "\n\n");
+	add_command(object,"GET %S HTTP/1.0", object->path);
+	add_command(object,"HOST: %s",object->host);
+	add_command(object,"Range: bytes=%s","1-");
+	strcat(object->command, "\n");
 
+	
 #ifdef DEBUG
-	printf("%s",command);
+	printf("%s Length of command%i",object->command,strlen(object->command));
 #endif
 
-	ssize_t bites_write = write(fd, command, MAXSTRING);
+	ssize_t bites_write = write(fd, object->command, strlen(object->command));
 //	printf("%i\n", bites_write);
 	
 	ssize_t bites_read = 0;
 	size_t size = MAXBUFFER;
 	char data[MAXBUFFER];
-	int file_fd = open(object->filename, O_WRONLY | O_CREAT, 0700);
+//	int file_fd = open(object->filename, O_WRONLY | O_CREAT, 0700);
 	int index = 0;
 
 	int i = 0;
@@ -68,17 +67,20 @@ void download(int fd, downloader *object)
 			else
 				i++;
 
-//			printf("%s",data);
-			strcat(object->header,data);
+			printf("%s%i",data,strlen(data));
+			strncat(object->header,data,1);
 		}
 	}
 
 #ifdef DEBUG
-	printf("Header:\n%s\n",object->header);
+	printf("Header:\n%s%i\n",object->header,strlen(object->header));
 #endif
 
 	http_status(object);
 	redirect(object);
+
+
+	int file_fd = open(object->filename, O_WRONLY | O_CREAT, 0700);
 
 
 	int bites = 0, total_bites=0;

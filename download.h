@@ -22,6 +22,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -32,7 +33,7 @@
 #include <fcntl.h>
 #include <time.h>
 
-#define MAXSTRING	255
+#define MAXSTRING	511
 #define MAXBUFFER	1023
 //#define DEBUG
 
@@ -44,6 +45,7 @@ typedef struct
 	char filename[MAXSTRING];
 	char header[MAXSTRING];
 	int status;
+	char command[MAXSTRING];
 } downloader;
 
 int tcp_connect(downloader *object, int port);
@@ -54,3 +56,4 @@ double gettime();
 void remove_proto(char *url,char *url_final);
 void http_status(downloader *object);
 void redirect(downloader *object);
+void add_command(downloader *object, char *format, ... );

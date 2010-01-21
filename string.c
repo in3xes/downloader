@@ -179,7 +179,7 @@ void redirect(downloader *object)
 	{
 		printf("Page has been moved\n");
 		char *next_url;
-		next_url = strstr(object->header,"http");
+		next_url = strstr(object->header," http");
 		char *garbage;
 		garbage = strchr(next_url,'\n');
 		int gar_len = strlen(garbage);
@@ -193,4 +193,17 @@ void redirect(downloader *object)
 		printf("Bad Request\n");
 	else 
 		printf("Server Error\n");
+}
+
+
+void add_command(downloader *object, char *format, ... )
+{
+	char s[MAXSTRING];
+	va_list args;
+	va_start(args, format);
+	vsnprintf(s, MAXSTRING, format, args);
+	strcat(s,"\n");
+	va_end(args);
+
+	strcat(object->command,s);
 }
