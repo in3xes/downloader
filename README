@@ -16,5 +16,8 @@ TO-DO:
 3)Multimple connection.
 4)Improvements to be done in network connection, IP details.(Yet to read alot).
 
-Usage:
+Install:
+Run Install in the current directory as super user.
 
+Usage:
+download url

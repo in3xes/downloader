@@ -1,9 +1,1 @@
-#!/bin/bash
-gcc -c connection.c -o ./obj/o_conn
-gcc -c filehandler.c -o ./obj/o_file
-gcc -c main.c -o ./obj/o_main
-gcc -c string.c -o ./obj/o_parse
-#gcc o_conn o_main o_file o_parse -o download
-gcc ./obj/* -o download
-
-strip download
+sudo ./Install

@@ -137,7 +137,7 @@ void remove_proto(char *url,char *final_url)
 		printf("FTP Protocal not supported!\n");
 		exit(0);
 	}
-	else
+	else if(url[0] == 'h')
 	{
 		int ln = strlen(url);
 		int dx;
@@ -146,6 +146,11 @@ void remove_proto(char *url,char *final_url)
 			tmp[dx] = url[dx+7];
 		}
 		strcpy(final_url,tmp);
+	}
+	else
+	{
+		printf("Unknown protocal\n");
+		exit(0);
 	}
 
 /*	else
