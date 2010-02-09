@@ -58,34 +58,11 @@ void parse(char *url, downloader *object)
 	}
 		
 
-/*	
-	if(!(object->path = strchr(url, '/')))
-	{
-		char buff[MAXSTRING];
-		strcpy(buff,url);
-		strcat(buff,"/index.html");
-		object->path = strchr(buff, '/');
-
-//		strcpy(object->path,"/index.html");
-	}
-	else if(!(strlen(object->path) > 1))
-	{
-		char buff[MAXSTRING];
-		strcpy(buff,url);
-		strcat(buff,"index.html");
-		object->path = strchr(buff, '/');
-	}
-	else
-	{
-		object->path = strchr(url, '/');
-	}
-//	path = strchr(url,'/');
-*/
 
 //	object->path = strchr(buff, '/');
 
 #ifdef DEBUG
-	printf("%s\t%s\t", object->path,object->filename);
+//	printf("%s\t%s\t", object->path,object->filename);
 #endif	
 }
 
@@ -108,19 +85,9 @@ void host(char *url,downloader *object)
 		strcpy(object->host,url);
 
 #ifdef DEBUG
-	printf("%s\n",object->host);
+//	printf("%s\n",object->host);
 #endif
 
-/*Debug								*/
-/*
-	char af[] = "asdf1234";
-	size_t ff = 4;
-	char bf[ff] ;
-	strncpy(bf,af,ff);
-	bf[ff]='\0';
-	printf("%s\t%s\n",af,bf);
-*/
-/*Debug ends							*/
 }
 
 
@@ -153,13 +120,6 @@ void remove_proto(char *url,char *final_url)
 		exit(0);
 	}
 
-/*	else
-	{
-		printf("else");
-		tmp = strstr(url,"//");
-		strcpy(final_url, tmp);
-	}
-*/	
 }
 
 void http_status(downloader *object)

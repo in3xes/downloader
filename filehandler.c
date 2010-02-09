@@ -32,9 +32,9 @@ double gettime()
 
 void download(int fd, downloader *object)
 {
-	add_command(object,"GET %S HTTP/1.0", object->path);
+	add_command(object,"GET %s HTTP/1.0", object->path);
 	add_command(object,"HOST: %s",object->host);
-	add_command(object,"Range: bytes=%s","1-");
+//	add_command(object,"Range: bytes=%s","1-");
 	strcat(object->command, "\n");
 
 	
@@ -67,7 +67,7 @@ void download(int fd, downloader *object)
 			else
 				i++;
 
-			printf("%s%i",data,strlen(data));
+//			printf("%s%i",data,strlen(data));
 			strncat(object->header,data,1);
 		}
 	}

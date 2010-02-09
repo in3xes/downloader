@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	if(fd = tcp_connect(obj , port))
 	{
 #ifdef DEBUG
-		printf("it's working..!!\n");
+		printf("file descripter created..!!\n");
 #endif
 	}
 
