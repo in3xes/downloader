@@ -80,7 +80,11 @@ void download(int fd, downloader *object)
 	redirect(object);
 
 
-	int file_fd = open(object->filename, O_WRONLY | O_CREAT, 0700);
+	int file_fd;
+	if((file_fd = open(object->filename, O_WRONLY | O_CREAT, 0600) ) != -1 )
+		printf("No problem. File created\n");
+	else
+		printf("Some problem in opening file\n");
 
 
 	int bites = 0, total_bites=0;

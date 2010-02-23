@@ -15,6 +15,7 @@ TO-DO:
 2)Enabling ftp
 3)Multimple connection.
 4)Improvements to be done in network connection, IP details.(Yet to read alot).
+5)Autoconf, Automake stuff
 
 Install:
 Run Install in the current directory as super user.

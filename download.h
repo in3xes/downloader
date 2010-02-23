@@ -35,7 +35,7 @@
 
 #define MAXSTRING	511
 #define MAXBUFFER	1023
-#define DEBUG
+//#define DEBUG
 
 typedef struct 
 {
